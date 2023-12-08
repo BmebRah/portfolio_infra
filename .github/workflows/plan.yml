@@ -4,13 +4,16 @@ on: pull_request
 jobs:
     plan:
       runs-on: ubuntu-latest
-      env:
-        var: ${ tfvars }
+      
 
       
       steps:
         - name: Checkout
           uses: actions/checkout@v4
+        - name: Install doctl
+          uses: digitalocean/action-doctl@v2
+          with:
+            token: ${{ secrets.DOGITALOCEAN_ACCESS_TOKEN }}
         - name: Install Terraform
           uses: hashicorp/setup-terraform@v3
           with:
