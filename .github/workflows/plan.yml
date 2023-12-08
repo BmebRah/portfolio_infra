@@ -4,6 +4,9 @@ on: pull_request
 jobs:
     plan:
       runs-on: ubuntu-latest
+      env:
+        var: ${ tfvars }
+
       
       steps:
         - name: Checkout

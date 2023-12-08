@@ -7,12 +7,9 @@ terraform {
   }
 }
 
-variable "digitalocean_token" {
-
-}
 
 provider "digitalocean" {
-  token = var.digitalocean_token
+  token = tfvar.digitalocean_token
 }
 
 resource "digitalocean_ssh_key" "default" {
