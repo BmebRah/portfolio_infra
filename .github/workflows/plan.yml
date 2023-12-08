@@ -1,26 +1,27 @@
 name: Terraform Plan
-
-on:
-  pull_request:
-      branches:
-        - main 
+on: pull_request
+      
 jobs:
-    checkout:
+    plan:
       runs-on: ubuntu-latest
       
       steps:
-        - uses: actions/checkout@v4
-        - uses: hashicorp/setup-terraform@v3
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Install Terraform
+          uses: hashicorp/setup-terraform@v3
+          with:
+            terraform_version: latest 
         
         - name: Terraform fmt
           run: terraform fmt -check
 
         - name: Terraform init
-          run: terraform init 
+          run: terraform init -input=false
 
         - name: Terraform Plan
-          run: terraform plan
-          
+          run: terraform plan -input=false
+
 
   
 
