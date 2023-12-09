@@ -26,7 +26,12 @@ jobs:
           run: terraform init -input=false
 
         - name: Terraform Plan
-          run: terraform plan -input=false
+          uses: digitalocean/action-doctl@v2
+          with:
+              token: secrets.DOGITALOCEAN_ACCESS_TOKEN
+        - run: terraform plan 
+              
+          
 
 
   
