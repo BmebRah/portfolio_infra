@@ -10,7 +10,7 @@ terraform {
 variable "digitalocean_token" {}
 
 provider "digitalocean" {
-    token = "${var.digitalocean_token}"
+    token = var.digitalocean_token
 }
 
 resource "digitalocean_ssh_key" "default" {
