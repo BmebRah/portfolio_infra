@@ -7,7 +7,7 @@ terraform {
     }
 }
 
-variable "digitalocean_token" {}
+variable "digitalocean_token" { }
 
 provider "digitalocean" {
     token = var.digitalocean_token
