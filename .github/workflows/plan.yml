@@ -9,10 +9,10 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
 
-        # - name: Install doctl
-        #   uses: digitalocean/action-doctl@v2
-        #   with:
-        #     token: secrets.DOGITALOCEAN_ACCESS_TOKEN
+        - name: Install doctl
+          uses: digitalocean/action-doctl@v2
+          with:
+            token: secrets.DOGITALOCEAN_ACCESS_TOKEN
           
         - name: Install Terraform
           uses: hashicorp/setup-terraform@v3
@@ -26,10 +26,7 @@ jobs:
           run: terraform init -input=false
 
         - name: Terraform Plan
-          uses: digitalocean/action-doctl@v2
-          with:
-              token: secrets.DOGITALOCEAN_ACCESS_TOKEN
-        - run: terraform plan 
+          run: terraform plan 
               
           
 
