@@ -28,6 +28,3 @@ resource "digitalocean_droplet" "node1" {
 
 }
 
-output "ipv4_address" {
-  value = digitalocean_droplet.node1.ipv4_address
-}
