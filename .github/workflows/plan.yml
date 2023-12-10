@@ -18,16 +18,19 @@ jobs:
           uses: hashicorp/setup-terraform@v3
           with:
             terraform_version: latest 
+
+        - name: Set Environment Variables
+          run: |
+            echo "DIGITALOCEAN_TOKEN=${{ secrets.DIGITALOCEAN_TOKEN }}" >> $GITHUB_ENV
         
-        - name: Terraform fmt
-          run: terraform fmt -check
+        - name: Run Terraform
+          run: |
+            terraform init
+            terraform plan
+          env:
+            DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
 
-        - name: Terraform init
-          run: terraform init -input=false
 
-        - name: Terraform Plan
-          run: terraform plan 
-              
           
 
 
