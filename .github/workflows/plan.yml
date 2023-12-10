@@ -4,10 +4,7 @@ on: pull_request
 jobs:
     plan:
       runs-on: ubuntu-latest
-      env:
-        DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
-
-
+      
     
       steps:
         - name: Checkout
@@ -25,9 +22,17 @@ jobs:
 
         - name: Initialise Terraform
           run: terraform init
+          env:
+            DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
+    
+    
             
         - name: Terraform Plan
           run: terraform plan
+          env:
+            DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
+    
+    
           
           
 
