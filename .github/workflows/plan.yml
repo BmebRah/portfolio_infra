@@ -18,10 +18,10 @@ jobs:
             echo "TF_VAR_digitalocean_token=${{ secrets.DIGITALOCEAN_TOKEN }}" >> $GITHUB_ENV
     
       
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-            token: ${ secrets.DIGITALOCEAN_ACCESS_TOKEN }
+    #   - name: Install doctl
+    #     uses: digitalocean/action-doctl@v2
+    #     with:
+    #         token: ${ secrets.DIGITALOCEAN_ACCESS_TOKEN }
 
             
 
