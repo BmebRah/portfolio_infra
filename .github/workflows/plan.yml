@@ -31,7 +31,7 @@ jobs:
           terraform_version: latest
 
       - name: Initialise Terraform
-        run: terraform init -input=false -var "do_token=$"var.digitalocean_token"
+        run: terraform init -input=false 
 
       - name: Terraform plan
-        run: terraform plan -input=false
+        run: terraform plan -input=false -var "do_token=$"var.digitalocean_token"
