@@ -14,7 +14,9 @@ jobs:
           run: |
             echo "DIGITALOCEAN_TOKEN=${{ secrets.DIGITALOCEAN_TOKEN }}" >> $GITHUB_ENV
       
-          
+        - name: Debug Token
+          run: |
+            echo "DIGITALOCEAN_TOKEN: $DIGITALOCEAN_TOKEN"
         - name: Install Terraform
           uses: hashicorp/setup-terraform@v3
           with:
@@ -24,9 +26,7 @@ jobs:
           run: terraform init
           env:
             DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
-    
-    
-            
+     
         - name: Terraform Plan
           run: terraform plan
           env:
