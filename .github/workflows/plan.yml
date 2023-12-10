@@ -34,4 +34,4 @@ jobs:
         run: terraform init -input=false 
 
       - name: Terraform plan
-        run: terraform plan -input=false -var "do_token=$"var.digitalocean_token"
+        run: terraform plan -input=false -var "do_token=${var.digitalocean_token}"
