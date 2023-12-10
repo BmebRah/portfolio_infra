@@ -1,43 +1,30 @@
 name: Terraform Plan
 on: pull_request
-      
+
 jobs:
-    plan:
-      runs-on: ubuntu-latest
+  plan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set Environment Variables
+        run: |
+          echo "DIGITALOCEAN_TOKEN=${{ secrets.DIGITALOCEAN_TOKEN }}" >> $GITHUB_ENV
+
+      - name: Debug Token
+        run: |
+          echo "DIGITALOCEAN_TOKEN: $DIGITALOCEAN_TOKEN"
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: latest
+
+      - name: Initialise Terraform
+        run: terraform init
+        
+
+      - name: Terraform Plan
+        run: terraform plan
       
-    
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v4
-
-        - name: Set Environment Variables
-          run: |
-            echo "DIGITALOCEAN_TOKEN=${{ secrets.DIGITALOCEAN_TOKEN }}" >> $GITHUB_ENV
-      
-        - name: Debug Token
-          run: |
-            echo "DIGITALOCEAN_TOKEN: $DIGITALOCEAN_TOKEN"
-        - name: Install Terraform
-          uses: hashicorp/setup-terraform@v3
-          with:
-            terraform_version: latest 
-
-        - name: Initialise Terraform
-          run: terraform init
-          env:
-            DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
-     
-        - name: Terraform Plan
-          run: terraform plan
-          env:
-            DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
-    
-    
-          
-          
-
-
-  
-
-
-
