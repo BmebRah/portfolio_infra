@@ -1,35 +1,27 @@
 terraform {
-    required_providers {
-        digitalocean = {
-            source  = "digitalocean/digitalocean"
-            version = "~> 2.0"
-        }
+required_providers {
+    aws = {
+    source  = "hashicorp/aws"
+    version = "~> 5.0"
     }
 }
-
-variable "digitalocean_token" {
-    
 }
 
-provider "digitalocean" {
-    token = "${var.digitalocean_token}"
+
+
+provider "aws" {
+region = "eu-west-2"
 }
 
-resource "digitalocean_ssh_key" "default" {
-    name = "ssh key"
-    public_key = "${file("~/.ssh/id_rsa.pub")}"
 
-}
+resource "aws_instance" "bereket-ec2" {
+instance_type = "t2.micro"
+key_name      = "proxy_key"
+ami           = "ubuntu"
 
-resource "digitalocean_droplet" "node1" {
-    name  =  "web1"
-    image =  "ubuntu-22-04-x64"
-    size  =  "s-1vcpu-1gb"
-    region = "lon1"
-    ssh_keys =[digitalocean_ssh_key.default.fingerprint]
 
 }
 
 output "ipv4_address" {
-    value = digitalocean_droplet.node1.ipv4_address
+value = aws_instance.bereket-ec2.key_name
 }
