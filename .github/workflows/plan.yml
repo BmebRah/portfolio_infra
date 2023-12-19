@@ -4,6 +4,10 @@ on: pull_request
 jobs:
   plan:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${secrets.AWS_ACCESS_KEY_ID}
+      AWS_SECRETA_ACCESS_KEY: ${secrets.AWS_SECRETA_ACCESS_KEY}
+      AWS_REGION: "eu-west-2"
     
 
     steps:
@@ -17,11 +21,7 @@ jobs:
 
       - name: Initialise Terraform
         run: terraform init
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: ${ secrets.DIGITALOCEAN_ACCESS_TOKEN }
-
+    
       - name: Terraform Plan
         run: terraform plan
         
