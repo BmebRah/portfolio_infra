@@ -20,8 +20,8 @@ jobs:
           terraform_version: latest
 
       - name: Initialise Terraform
-        run: terraform init
+        run: terraform init -input=false
     
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -input=false
         
