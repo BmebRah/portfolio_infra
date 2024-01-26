@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: view Terraform plan
 on: pull_request
 jobs: 
@@ -29,3 +30,32 @@ jobs:
               run: terraform plan -input=false
 
         
+=======
+name: View terraform plan 
+on: pull_request
+jobs: 
+    plan:
+        runs-on: ubuntu-latest
+        env:
+          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+
+        steps: 
+          - name: Checkout
+            uses: actions/checkout@v2
+
+          - name: Install Terraform 
+            uses: hashicorp/setup-terraform@v2
+            with: 
+              terraform_version: latest 
+
+          - name: Terraform Init
+            run: terraform init -input=false
+            
+          - name: Terraform Plan
+            run: terraform plan -input=false
+            
+
+
+        
+>>>>>>> 2517426 (Adds terraform workflow)
