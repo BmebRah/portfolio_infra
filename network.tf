@@ -88,18 +88,5 @@ resource "aws_route" "prod_internet_gateway" {
   gateway_id             = aws_internet_gateway.prod.id
   destination_cidr_block = "0.0.0.0/0"
 }
-# NAT gateway
-resource "aws_eip" "prod_nat_gateway" {
-  associate_with_private_ip = "10.0.0.5"
-  depends_on                = [aws_internet_gateway.prod]
-}
-resource "aws_nat_gateway" "prod" {
-  allocation_id = aws_eip.prod_nat_gateway.id
-  subnet_id     = aws_subnet.prod_public_1.id
-}
-resource "aws_route" "prod_nat_gateway" {
-  route_table_id         = aws_route_table.prod_private.id
-  nat_gateway_id         = aws_nat_gateway.prod.id
-  destination_cidr_block = "0.0.0.0/0"
-}
 
+   
